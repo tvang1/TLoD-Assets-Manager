@@ -93,7 +93,7 @@ class DebugData:
                 primitive_reporter_warning = f'This report file is used to Debug and research about Primitives in Models. \nAlso helps to compare Obj Table Calculation and final extracted primitives.\nIf you are not sure what are you doing, please ignore this file.\n\n'
                 header_text_concatenated = primitive_reporter_superheader + primitive_reporter_header + primitive_reporter_warning
                 write_prim_per_obj.write(header_text_concatenated)
-                separator_from_start = f'{'='*50}\n\n'
+                separator_from_start = f"{'='*50}\n\n"
                 write_prim_per_obj.write(separator_from_start)
                 for current_object in primitives_per_object:
                     write_obj_name = f'Primitives converted from: {current_object}\n'
@@ -106,5 +106,5 @@ class DebugData:
                         write_prim_per_obj.write(quantity_and_type_line)
                     separator_from_object = f'\n'
                     write_prim_per_obj.write(separator_from_object)
-                time_now = f'{'='*50}\nWork finished at: ' + str(datetime.datetime.now())
+                time_now = f"{'='*50}\nWork finished at: " + str(datetime.datetime.now())
                 write_prim_per_obj.write(time_now)

@@ -1,7 +1,51 @@
-# TLoD Assets Manager
+# TLoD Assets Manager MacOS/Linux Version
 TLoD Tool for manage game Assets (Textures, Models, Animations).
-Version: **BETA 0.1**
+Version: **BETA 0.2**
 
+*Changelog from TheRamenRider*
+10-18-2025
+
+These are changes made from the TLoD Assets Manager Beta 0.2 to fit the MacOS/Linux Environment. 
+
+1) Fixed notable f-strings mismatches. It's a logical issue mostly pertaining to nested f-strings. This was more notable for config_handlers.py and folder_handler.py
+
+--- From ---
+firstrun_flag = f'FIRST_RUN = {configuration_dict.get(f'First_Run')}\n'
+res_x = f'DEFAULT_RES_X = {configuration_dict.get(f'SizeX')}\n'
+res_y = f'DEFAULT_RES_Y = {configuration_dict.get(f'SizeY')}\n'
+sc_folder = f'SC_FOLDER = {configuration_dict.get(f'SC_Folder')}\n'
+deploy_folder = f'DEPLOY_FOLDER = {configuration_dict.get(f'Deploy_Folder')}'
+
+--- To --
+firstrun_flag = f"FIRST_RUN = {configuration_dict.get(f'First_Run')}\n"
+res_x = f"DEFAULT_RES_X = {configuration_dict.get(f'SizeX')}\n"
+res_y = f"DEFAULT_RES_Y = {configuration_dict.get(f'SizeY')}\n"
+sc_folder = f"SC_FOLDER = {configuration_dict.get(f'SC_Folder')}\n"
+deploy_folder = f"DEPLOY_FOLDER = {configuration_dict.get(f'Deploy_Folder')}"
+
+There are plans to fix this into literal strings. For now, this should help.
+
+2) Fixed file pathing for MacOS/Linux. MacOS/Linux utilizes ‘/‘ instead of ‘\’. Most of the .py escaped and utlized '\\'. I replaced the '\\' with '/' throughout .py files.
+
+--- From ---
+absolute_path_config = f'{absolute_path_current}\\Resources\\Manager.config'
+absolute_path_databases = f'{absolute_path_current}\\Databases'
+background_image = f'{absolute_path_current}\\Resources\\main.png'.replace('\\', '/')
+icon_app = f'{absolute_path_current}\\Resources\\Dragoon_Eyes.ico'
+
+--- To ---
+absolute_path_config = f'{absolute_path_current}/Resources/Manager.config'
+absolute_path_databases = f'{absolute_path_current}/Databases'
+background_image = f'{absolute_path_current}/Resources/main.png'.replace('/', '/')
+icon_app = f'{absolute_path_current}/Resources/Dragoon_Eyes.ico'
+
+
+3) Ran into a bug and logical issues with submap texture exporting. When using submap converstions, the textures seemed to not want to be exported. DooMMetal identified the bug. Values in submap_conversion_window.py needed to be set to True. Such as { self.texture_convert = True } and { self.check_texture.setChecked(True) }
+
+I'd like to thank DooMMEtal and Monoxide for assisting with this version.
+
+
+-----
 *About the tool:*
 
 Surely you are familiar to TLoD TMD Converter (tool for converting Models from TLoD) and TLoD Texture Converter (tool for converting Textures), now i merged the best of the two worlds in a single tool. TLoD Assets Manager. 

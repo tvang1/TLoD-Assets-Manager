@@ -107,9 +107,9 @@ class BattleConversionInterface():
         sc_path: str = self.sc_folder
         if model_parent != 'Characters':
             if model_parent != 'CutScenes':
-                sc_path = f'{self.sc_folder}\\SECT\\DRGN0.BIN\\'
+                sc_path = f'{self.sc_folder}/SECT/DRGN0.BIN/'
             else:
-                sc_path = f'{self.sc_folder}\\SECT\\DRGN0.BIN'
+                sc_path = f'{self.sc_folder}/SECT/DRGN0.BIN'
         else:
             sc_path = f'{sc_path}/'
                 
@@ -117,7 +117,7 @@ class BattleConversionInterface():
             folder_path = ''
         
         # Model File Path [STR]
-        model_file_path = f'{sc_path}{folder_path}\\{file}'.replace('//', '/')
+        model_file_path = f'{sc_path}{folder_path}/{file}'.replace('//', '/')
 
         # Model Passive Animations Path Setting
         current_passive_anim_path: str = ''
@@ -140,7 +140,7 @@ class BattleConversionInterface():
         # Texture Path Settings
         texture_path: str = ''
         if model_parent == 'CutScenes':
-            texture_path = f'{self.sc_folder}\\SECT\\DRGN0.BIN\\'
+            texture_path = f'{self.sc_folder}/SECT/DRGN0.BIN/'
         elif (model_parent == 'Bosses') or (model_parent == 'Enemies') or (model_parent == 'Tutorial'):
             texture_path = self.sc_folder
         else:
@@ -286,7 +286,7 @@ class SubMapConversionInterface():
         get_textures = model_data.get('Textures').strip()
         
         # Setting Model path
-        model_full_path = f'{self.sc_folder}\\SECT\\{get_model_and_anim_folder}\\{get_model_file}'
+        model_full_path = f'{self.sc_folder}/SECT/{get_model_and_anim_folder}/{get_model_file}'
         
         # Setting Animations path
         modelanims_half_path: str = ''
@@ -296,16 +296,16 @@ class SubMapConversionInterface():
             get_anim_files = f'None'
         else:
             model_anims_files_to_list = get_anim_files.replace('[', '').replace(']', '').strip().split(', ')
-            modelanims_half_path = f'{self.sc_folder}\\SECT\\{get_model_and_anim_folder}'
+            modelanims_half_path = f'{self.sc_folder}/SECT/{get_model_and_anim_folder}'
         
         # Setting Texture path/s, if Object there is a single path, if Environment will have several paths
-        texture_half_path = f'{self.sc_folder}\\SECT\\'
+        texture_half_path = f'{self.sc_folder}/SECT/'
         textures_file_path: list = []
         if model_nesting[3] == 'Environment':
             split_folder_path = get_textures.split('[')
             folder_path = split_folder_path[0]
             texture_files = split_folder_path[1].replace('[', '').replace(']', '').strip().split(', ')
-            texture_half_path = f'{self.sc_folder}\\SECT\\{folder_path}'
+            texture_half_path = f'{self.sc_folder}/SECT/{folder_path}'
             for this_texture in texture_files:
                 textures_file_path.append(this_texture)
         else:
@@ -370,15 +370,15 @@ class SubMapConversionInterface():
             for this_binary_texture in file_texture_bin.binaries_data_dict:
                 get_this_bin_texture = file_texture_bin.binaries_data_dict.get(f'{this_binary_texture}')
                 current_processed_texture = asunder_binary_data.Asset(bin_to_split=get_this_bin_texture)
-                texture_file_nesting = f'{folder_nesting}, Textures'
+                texture_file_nesting = f"{folder_nesting}, Textures"
                 texture_file_name:str = ''
                 if '/textures/' in this_binary_texture:
                     find_end = this_binary_texture.rfind(f'/textures/')
-                    texture_file_name = f'{file_name}_{this_binary_texture[find_end + 10:]}'
+                    texture_file_name = f"{file_name}_{this_binary_texture[find_end + 10:]}"
                 elif 'DRGN21.BIN/2' == this_binary_texture:
-                    texture_file_name = f'{file_name.replace(' ', '_')}'
+                    texture_file_name = f"{file_name.replace(' ', '_')}"
                 else:
-                    texture_file_name = f'{file_name}_{this_binary_texture}'
+                    texture_file_name = f"{file_name}_{this_binary_texture}"
                 new_folder_textures = folder_handler.TextureFolder(deploy_folder_path=self.deploy_folder, file_nesting=texture_file_nesting, file_name=texture_file_name)
                 png_file_write = png_writer.PngFile(texture_data=current_processed_texture.texture_converted_data, file_deploy_path=new_folder_textures.new_file_name, texture_type='TIM')
 
@@ -439,14 +439,14 @@ class TextureOnlyConversionInterface():
             clean_file_name = get_textures_file.replace('[', '').replace(']', '').replace('\'', '').strip()
             file_list = [clean_file_name]
             if get_textures_folder == clean_file_name: # This are the files placed in Root DRGN0.BIN
-                textures_path = f'{self.sc_folder}\\SECT\\DRGN0.BIN'
+                textures_path = f'{self.sc_folder}/SECT/DRGN0.BIN'
                 texture_model_specs = {'Format': texture_type, 'Path': textures_path, 'Files': file_list}
             else: # This seems to be only the Skyboxes MCQ lol
-                textures_path = f'{self.sc_folder}\\SECT\\DRGN0.BIN\\{get_textures_folder}'
+                textures_path = f'{self.sc_folder}/SECT/DRGN0.BIN/{get_textures_folder}'
                 texture_model_specs = {'Format': texture_type, 'Path': textures_path, 'Files': file_list}      
         else:
             texture_files = get_textures_file.replace('[', '').replace(']', '').replace('\'', '').strip().split(', ')
-            textures_path = f'{self.sc_folder}\\SECT\\DRGN0.BIN\\{get_textures_folder}'
+            textures_path = f'{self.sc_folder}/SECT/DRGN0.BIN/{get_textures_folder}'
             texture_model_specs = {'Format': texture_type, 'Path': textures_path, 'Files': texture_files}
         
         texture_data_dict = {'Name': texture_group_name, 'FolderNesting': nesting_folders, 'Texture': texture_model_specs}
@@ -464,7 +464,7 @@ class TextureOnlyConversionInterface():
         texture_path = texture_specs.get('Path')
         texture_format = texture_specs.get('Format')
         for current_texture in texture_list_to_convert:
-            current_path = f'{texture_path}\\{current_texture}'
+            current_path = f'{texture_path}/{current_texture}'
             texture_dict = {f'Format': texture_format, 'Path': current_path}
             if (current_texture == '6666') or (current_texture == '6665'):
                 get_embedded_tims = self.handle_embedded_tims(file_path=current_path, file_name=current_texture)
@@ -592,16 +592,16 @@ class WorldMapConversionInterface():
         model_full_path: str = ''
         tmd_type: str = ''
         if folder_path == 'DRGN0.BIN':
-            model_full_path = f'{self.sc_folder}\\SECT\\DRGN0.BIN\\{model_file}'
+            model_full_path = f'{self.sc_folder}/SECT/DRGN0.BIN/{model_file}'
             tmd_type = 'TMD_Standard'
         else:
-            model_full_path = f'{self.sc_folder}\\SECT\\DRGN0.BIN\\{folder_path}\\{model_file}'
+            model_full_path = f'{self.sc_folder}/SECT/DRGN0.BIN/{folder_path}/{model_file}'
             tmd_type = 'TMD_CContainer'
         
         # SC Folder path to Model Anims
         animation_full_path: str = ''
         if anim_path != 'None':
-            animation_full_path = f'{self.sc_folder}\\SECT\\DRGN0.BIN\\{anim_path}'
+            animation_full_path = f'{self.sc_folder}/SECT/DRGN0.BIN/{anim_path}'
         else:
             animation_full_path = 'None'
             animation_files = []
@@ -614,7 +614,7 @@ class WorldMapConversionInterface():
         texture_files = split_folder_from_file[1].replace('[', '').replace(']', '').strip().split(',')
 
         for this_texture in texture_files:
-            this_texture_full_path = f'{self.sc_folder}\\SECT\\DRGN0.BIN\\{texture_folder}\\{this_texture}'
+            this_texture_full_path = f'{self.sc_folder}/SECT/DRGN0.BIN/{texture_folder}/{this_texture}'
             textures_full_path.append(this_texture_full_path)
         
         file_model_specs = {'Format': tmd_type, 'Path': model_full_path}
@@ -666,7 +666,7 @@ class WorldMapConversionInterface():
             format = texture_specs.get(f'Format')
             texture_files = texture_specs.get(f'Path')
             for this_texture_path in texture_files:
-                texture_name_end = this_texture_path.rfind('\\')
+                texture_name_end = this_texture_path.rfind('/')
                 texture_name = this_texture_path[texture_name_end + 1:]
                 single_texture_spec = {'Format': format, 'Path': this_texture_path}
                 file_texture_bin = binary_to_dict.BinaryToDict(bin_file_to_dict=single_texture_spec)

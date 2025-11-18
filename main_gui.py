@@ -3,7 +3,7 @@
 Main GUI: Main module for TLoD Assets Manager GUI, 
 here only exist the GUI code
 
-Version: Beta 0.1
+Version: Beta 0.2
 
 GUI Module: PyQt
 
@@ -160,8 +160,8 @@ class MainWindow(QMainWindow):
         self.cancel_config_button.setText('CANCEL')
         self.cancel_config_button.setDefault(True)
         # Labels Text Show
-        self.change_sc_folder_view.setText(f'{self.init_config.get('SC_Folder')}')
-        self.change_deploy_folder_view.setText(f'{self.init_config.get('Deploy_Folder')}')
+        self.change_sc_folder_view.setText(f"{self.init_config.get('SC_Folder')}")
+        self.change_deploy_folder_view.setText(f"{self.init_config.get('Deploy_Folder')}")
         # Tooltips
         self.resolution_combobox.setToolTip('Change the tool Resolution')
         change_sc_folder_button.setToolTip('Change SC files folder to a desired one.\nRemember that files folder must exist')
@@ -323,15 +323,15 @@ class MainWindow(QMainWindow):
     def deff_conversion_window(self):
         sc_folder_get = self.init_config.get(f'SC_Folder')
         deploy_folder = self.init_config.get(f'Deploy_Folder')
-        sc_folder_deff = sc_folder_get + f'\\SECT\\DRGN0.BIN\\'
+        sc_folder_deff = sc_folder_get + f'/SECT/DRGN0.BIN/'
         deff_conversion_window = DeffConversionMainWindow(self, icon=self.icon, assets_database=self.assets_database, sc_folder=sc_folder_deff, deploy_folder=deploy_folder)
 
 if __name__ == '__main__':
     absolute_path_current = os.path.abspath(os.getcwd())
-    absolute_path_config = f'{absolute_path_current}\\Resources\\Manager.config'
-    absolute_path_databases = f'{absolute_path_current}\\Databases'
-    background_image = f'{absolute_path_current}\\Resources\\main.png'.replace('\\', '/')
-    icon_app = f'{absolute_path_current}\\Resources\\Dragoon_Eyes.ico'
+    absolute_path_config = f'{absolute_path_current}/Resources/Manager.config'
+    absolute_path_databases = f'{absolute_path_current}/Databases'
+    background_image = f'{absolute_path_current}/Resources/main.png'.replace('/', '/')
+    icon_app = f'{absolute_path_current}/Resources/Dragoon_Eyes.ico'
     app = QApplication(sys.argv)
     if os.path.exists(absolute_path_databases) == False:
         database_not_found = f'Database Folder: {absolute_path_databases}, Not Found!!.\nCheck if Database Folder is placed as intended.\nExiting tool to avoid further errors...'

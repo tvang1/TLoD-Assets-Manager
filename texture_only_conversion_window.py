@@ -3,7 +3,7 @@
 Conversion Window: Conversion module for TLoD Assets Manager GUI, 
 here only exist the GUI code
 
-Version: Beta 0.1
+Version: Beta 0.2
 
 GUI Module: PyQt
 
@@ -366,8 +366,8 @@ class QThreadConverting(QThread):
 
 if __name__ == '__main__':
     absolute_path_current = os.path.abspath(os.getcwd())
-    absolute_path_databases = f'{absolute_path_current}\\Databases'
-    icon_app = f'{absolute_path_current}\\Resources\\DD_Eye.ico'
+    absolute_path_databases = f'{absolute_path_current}/Databases'
+    icon_app = f'{absolute_path_current}/Resources/DD_Eye.ico'
     testapp = QApplication(sys.argv)
     build_database = database_handler.DatabaseHandler(database_path=absolute_path_databases)
     testwindow = TextOnlyConversionMainWindow(icon=icon_app, assets_database=build_database.full_database)

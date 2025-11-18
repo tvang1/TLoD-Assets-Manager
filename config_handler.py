@@ -53,8 +53,8 @@ class ConfigurationHandler:
         first_run_flag = first_run_flag_complete_string[1].replace(' ', '').replace('\n','')
         resolution_x = resolution_x_complete_string[1].replace(' ', '').replace('\n','')
         resolution_y = resolution_y_complete_string[1].replace(' ', '').replace('\n','')
-        severed_chains_folder = severed_chains_folder_complete_string[1].strip().replace('\n','').replace('/', '\\')
-        deploy_folder = deploy_folder_complete_string[1].strip().replace('\n','').replace('/', '\\')
+        severed_chains_folder = severed_chains_folder_complete_string[1].strip().replace('\n','').replace('/', '/')
+        deploy_folder = deploy_folder_complete_string[1].strip().replace('\n','').replace('/', '/')
 
         if (first_run_flag[1] == 'True') or (first_run_flag[1] == f''):
             start_up_dialog = QMessageBox.information(None, f'FIRST START-UP', f'We will do a start-up configuration\nplease follow the steps', QMessageBox.StandardButton.Ok)
@@ -94,11 +94,11 @@ class ConfigurationHandler:
         """
         with open(config_file_path, 'w') as writing_options:
             header = f'[CONFIG]\n'
-            firstrun_flag = f'FIRST_RUN = {configuration_dict.get(f'First_Run')}\n'
-            res_x = f'DEFAULT_RES_X = {configuration_dict.get(f'SizeX')}\n'
-            res_y = f'DEFAULT_RES_Y = {configuration_dict.get(f'SizeY')}\n'
-            sc_folder = f'SC_FOLDER = {configuration_dict.get(f'SC_Folder')}\n'
-            deploy_folder = f'DEPLOY_FOLDER = {configuration_dict.get(f'Deploy_Folder')}'
+            firstrun_flag = f"FIRST_RUN = {configuration_dict.get(f'First_Run')}\n"
+            res_x = f"DEFAULT_RES_X = {configuration_dict.get(f'SizeX')}\n"
+            res_y = f"DEFAULT_RES_Y = {configuration_dict.get(f'SizeY')}\n"
+            sc_folder = f"SC_FOLDER = {configuration_dict.get(f'SC_Folder')}\n"
+            deploy_folder = f"DEPLOY_FOLDER = {configuration_dict.get(f'Deploy_Folder')}"
             grabbing_every_str = f'{header}{firstrun_flag}{res_x}{res_y}{sc_folder}{deploy_folder}'
             writing_options.write(grabbing_every_str)
             writing_options.close()

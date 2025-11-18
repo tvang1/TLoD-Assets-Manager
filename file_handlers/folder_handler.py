@@ -29,9 +29,9 @@ class Folders:
         self.create_folders()
     
     def create_folders(self):
-        nesting_to_file = self.file_nesting.replace(", ", "\\").strip()
-        self.new_file_name = f'{self.deploy_folder_path}\\{nesting_to_file}\\{self.file_name}'
-        search_last_slash = self.new_file_name.rfind('\\')
+        nesting_to_file = self.file_nesting.replace(", ", "/").strip()
+        self.new_file_name = f'{self.deploy_folder_path}/{nesting_to_file}/{self.file_name}'
+        search_last_slash = self.new_file_name.rfind('/')
         self.new_deploy_path = self.new_file_name[0:search_last_slash]
         
         try:
@@ -51,10 +51,10 @@ class DeffFolders:
     def create_deff_folders(self):
         nesting_to_file: str = ''
         for this_folder_nest in self.file_nesting:
-            this_path_str = f'{this_folder_nest}\\'
+            this_path_str = f'{this_folder_nest}/'
             nesting_to_file += this_path_str
 
-        self.new_deploy_path = f'{self.deploy_folder_path}\\{nesting_to_file}'
+        self.new_deploy_path = f'{self.deploy_folder_path}/{nesting_to_file}'
         try:
             os.makedirs(self.new_deploy_path, exist_ok=True)
         except OSError:
@@ -72,9 +72,9 @@ class TextureFolder:
         self.create_folders()
 
     def create_folders(self):
-        nesting_to_file = self.file_nesting.replace(", ", "\\").strip()
-        self.new_file_name = f'{self.deploy_folder_path}\\{nesting_to_file}\\{self.file_name}'
-        search_last_slash = self.new_file_name.rfind('\\')
+        nesting_to_file = self.file_nesting.replace(", ", "/").strip()
+        self.new_file_name = f'{self.deploy_folder_path}/{nesting_to_file}/{self.file_name}'
+        search_last_slash = self.new_file_name.rfind('/')
         self.new_deploy_path = self.new_file_name[0:search_last_slash]
 
         try:

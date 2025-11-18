@@ -39,7 +39,7 @@ class DatabaseHandler:
         
         for folder, subfolder, database_files in check_databases_path:
             for database_file in database_files:
-                each_database_full_path = f'{folder}\\{database_file}'
+                each_database_full_path = f'{folder}/{database_file}'
                 if 'Battle' in each_database_full_path:
                     main_folder_databases.append(each_database_full_path)
                 elif 'DEFF' in each_database_full_path:
@@ -81,7 +81,7 @@ class DatabaseHandler:
         cleaned_file_path: list = []
 
         for file_path in file_path_list:
-            clear_file_path = file_path.find('\\Databases\\')
+            clear_file_path = file_path.find('/Databases/')
             new_path = file_path[(clear_file_path + 1):]
             cleaned_file_path.append(new_path)
 
@@ -89,7 +89,7 @@ class DatabaseHandler:
         simple_nest_path: list[tuple] = []
         double_nest_path: list[tuple] = []
         for database_file_path in cleaned_file_path:
-            split_file_path = database_file_path.split('\\')
+            split_file_path = database_file_path.split('/')
             get_parent_name: str = ''
             get_child_name: str = ''
 
@@ -192,7 +192,7 @@ class DatabaseHandler:
         # Here i clean the SubMap-Cut from Environment and Objects files to just having one path (not repeated)
         clear_path_list = []
         for submaps_in_list in file_path_list:
-            get_folder_path_only = submaps_in_list.rfind(f'\\')
+            get_folder_path_only = submaps_in_list.rfind(f'/')
             folder_path_clean = submaps_in_list[0:get_folder_path_only]
             if folder_path_clean not in clear_path_list:
                 clear_path_list.append(folder_path_clean)
@@ -203,9 +203,9 @@ class DatabaseHandler:
             submap_path: list = []
             for this_current_path in clear_path_list:
                 if this_drgn_disk in this_current_path:
-                    find_submap_name_start = this_current_path.find(f'\\{this_drgn_disk}')
-                    find_submap_name_end = this_current_path.rfind(f'\\')
-                    current_submap_name = this_current_path[(find_submap_name_start + 8) :find_submap_name_end] # \\DRGN2x\\ always is a 8 length string
+                    find_submap_name_start = this_current_path.find(f'/{this_drgn_disk}')
+                    find_submap_name_end = this_current_path.rfind(f'/')
+                    current_submap_name = this_current_path[(find_submap_name_start + 8) :find_submap_name_end] # /DRGN2x/ always is a 8 length string
                     submap_repetitions.append(current_submap_name)
                     submap_path.append(this_current_path)
             # I count the ocurrences because of YES
@@ -215,7 +215,7 @@ class DatabaseHandler:
             for this_submap in count_submap_repetitions:
                 current_cuts: list = []
                 for submap_cut_path in submap_path:
-                    this_submap_full_string = f'\\{this_submap}\\'
+                    this_submap_full_string = f'/{this_submap}/'
                     if (this_submap_full_string in submap_cut_path) and (this_drgn_disk in submap_cut_path):
                         current_cuts.append(submap_cut_path)
                 gather_data_into_dict = {f'{this_submap}': current_cuts}
@@ -230,11 +230,11 @@ class DatabaseHandler:
                 final_submap_dict: dict = {f'{this_current_submap}': {}}
                 get_cut_paths = get_submaps.get(f'{this_current_submap}')
                 for this_cut_path in get_cut_paths:
-                    find_cut_name = this_cut_path.rfind(f'\\')
+                    find_cut_name = this_cut_path.rfind(f'/')
                     cut_name = this_cut_path[find_cut_name + 1:]
                     cut_data: dict = {}
-                    this_cut_path_environment = f'{this_cut_path}\\Environment.csv'
-                    this_cut_path_objects = f'{this_cut_path}\\Objects.csv'
+                    this_cut_path_environment = f'{this_cut_path}/Environment.csv'
+                    this_cut_path_objects = f'{this_cut_path}/Objects.csv'
                     if os.path.isfile(this_cut_path_environment):
                         with open(this_cut_path_environment, 'r') as csv_file:
                             csv_read = csv.reader(csv_file)
@@ -295,7 +295,7 @@ class DatabaseHandler:
         texture_only_dict: dict = {'Menu_Textures': {}, 'Skyboxes': {}, 'THE_END': {}, 'WorldMap_GUI': {}, 'WorldMap_Thumbnails': {}}
         
         for current_textonly_database in file_path_list:
-            find_last_slash = current_textonly_database.rfind(f'\\')
+            find_last_slash = current_textonly_database.rfind(f'/')
             find_csv_extension = current_textonly_database.find(f'.csv')
             texture_only_parent_name = current_textonly_database[(find_last_slash + 1):find_csv_extension].strip()
             
@@ -425,13 +425,13 @@ class DatabaseHandler:
         deff_sequence['Sequence'] = sequence
 
         # Now i need to setup the Sequence Folder
-        find_last_slash_from_path = rebuild_file_path.rfind('\\')
+        find_last_slash_from_path = rebuild_file_path.rfind('/')
         database_clear_path = rebuild_file_path[0:find_last_slash_from_path]
         find_first_slash_from_sequence_number = deff_sequence_number_as_str.find('/')
         sequence_number_clear = deff_sequence_number_as_str[0:find_first_slash_from_sequence_number]
         
         # Now we join both Strings to get the actual Sequence Folder
-        joined_sequence_path = f'{database_clear_path}\\{sequence_number_clear}-Objects\\'
+        joined_sequence_path = f'{database_clear_path}/{sequence_number_clear}-Objects/'
         deff_sequence['Sequence Folder'] = joined_sequence_path
 
         rebuild_file = {f'{deff_name}': deff_sequence}

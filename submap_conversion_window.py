@@ -3,7 +3,7 @@
 Conversion Window: Conversion module for TLoD Assets Manager GUI, 
 here only exist the GUI code
 
-Version: Beta 0.1
+Version: Beta 0.2
 
 GUI Module: PyQt
 
@@ -111,7 +111,7 @@ class SubMapConversionMainWindow(QMainWindow):
         # Bool Values needed for Conversion by Default this are the values at startup of the SubMap Conversion Window
         # This will help people that want just a very fast thing to do
         self.anim_convert: bool = True
-        self.texture_convert: bool = False
+        self.texture_convert: bool = True
         self.tmd_report: bool = False
         self.prim_report: bool = False
         self.mode_selected: str = 'Single'
@@ -204,7 +204,7 @@ class SubMapConversionMainWindow(QMainWindow):
         # Setup Basic Actions for Pushable/Selectable Widgets
         self.parent_combobox.setDisabled(True)
         self.check_animations.setChecked(True)
-        self.check_texture.setChecked(False)
+        self.check_texture.setChecked(True)
         self.check_tmd_report.setChecked(False)
         self.check_prim_report.setChecked(False)
         self.parent_combobox.setDisabled(True)
@@ -312,7 +312,7 @@ class SubMapConversionMainWindow(QMainWindow):
     # Specific Methods for each Widget in Multiple Mode Conversion
     def enable_multiconversion(self):
         self.anim_convert = True
-        self.texture_convert = False
+        self.texture_convert = True # RamenRider - Change for bugfix from False to True
         self.tmd_report = False
         self.prim_report = False
         self.mode_selected = 'Multi'
@@ -328,7 +328,7 @@ class SubMapConversionMainWindow(QMainWindow):
         # Setup default behavior of Checkboxes
         self.check_animations.setChecked(True)
         self.check_animations.setDisabled(True)
-        self.check_texture.setChecked(False)
+        self.check_texture.setChecked(True) # RamenRider - Change for bugfix from False to True
         self.check_tmd_report.setChecked(False)
         self.check_prim_report.setChecked(False)
         self.check_animations.toggled.connect(self.check_anim_bool)
@@ -339,7 +339,7 @@ class SubMapConversionMainWindow(QMainWindow):
     # Specific Methods for each Widget in Batch Mode Conversion
     def enable_batch_conversion(self):
         self.anim_convert = True
-        self.texture_convert = False
+        self.texture_convert = True
         self.tmd_report = False
         self.prim_report = False
         self.mode_selected = 'All'
@@ -353,7 +353,7 @@ class SubMapConversionMainWindow(QMainWindow):
         # Setup default behavior of Checkboxes
         self.check_animations.setChecked(True)
         self.check_animations.setDisabled(True)
-        self.check_texture.setChecked(False)
+        self.check_texture.setChecked(True) # RamenRider - Change for bugfix from False to True
         self.check_tmd_report.setChecked(False)
         self.check_prim_report.setChecked(False)
         self.convert_model_button.setEnabled(True)
@@ -512,8 +512,8 @@ class QThreadConverting(QThread):
 
 if __name__ == '__main__':
     absolute_path_current = os.path.abspath(os.getcwd())
-    absolute_path_databases = f'{absolute_path_current}\\Databases'
-    icon_app = f'{absolute_path_current}\\Resources\\DD_Eye.ico'
+    absolute_path_databases = f'{absolute_path_current}/Databases'
+    icon_app = f'{absolute_path_current}/Resources/DD_Eye.ico'
     testapp = QApplication(sys.argv)
     build_database = database_handler.DatabaseHandler(database_path=absolute_path_databases)
     testwindow = SubMapConversionMainWindow(icon=icon_app, assets_database=build_database.full_database)
