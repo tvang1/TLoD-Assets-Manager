@@ -1,6 +1,12 @@
 # TLoD Assets Manager
 TLoD Tool for manage game Assets (Textures, Models, Animations).
-Version: **BETA 0.1**
+Version: **BETA 0.2**
+
+**MAC OS Fork**
+Yeah you read well!... right now TheRamenRider it's doing a very good job forking and adapting TLoD Assets Converter code for MacOS and their Users!.
+Since I do not have a proper hardware to test it, was impossible to me making something at least 'good'.
+[https://github.com/tvang1/TLoD-Assets-Manager-MacOS]
+You can check it in there!
 
 *About the tool:*
 
@@ -8,9 +14,9 @@ Surely you are familiar to TLoD TMD Converter (tool for converting Models from T
 
 A tool designed to efficiently work with TLoD Models, Textures and in a future Sounds/Audio files.
 
-At this very moment BETA Version 0.1, the idea about this tool is not only converting models/animations/textures, but also in a future help to modding community to easily grouping and sorting their installed Visual and Audio mods!. For BETA 0.2, Preview of Models/Animations and Textures in real time.
+At this very moment BETA Version 0.2, the idea about this tool is not only converting models/animations/textures, but also in a future help to modding community to easily grouping and sorting their installed Visual and Audio mods!. For BETA 0.5 (yeah I re-formulate this, sorry but I was very positive in reaching this goal way before), Preview of Models/Animations and Textures in real time.
 
-Since this tool realies heavily in [Severed Chains](https://github.com/Legend-of-Dragoon-Modding/Severed-Chains), i strongly recommend install it and run it (at least once) to get files properly deployed.
+Since this tool relies heavily in [Severed Chains](https://github.com/Legend-of-Dragoon-Modding/Severed-Chains), strongly recommend install it and run it (at least once) to get files properly deployed.
 
 Also this tool came with a lot of news!.
 - Changed support for 3D converted files into glTF 2.0, file format. Since Blender 4.0+ it's moving Collada DAE Files support into Legacy. This change also help us to store easily in the same file all the Animations from a converted model.
@@ -39,7 +45,7 @@ License: GPL Affero.
 
 ## PyQt6
 
-As GUI i use PyQt6 a nice way to work on modern GUIs and hopefully get this tool working multiplatform without loosing my mind:
+As GUI TLoD Assets Converter uses PyQt6 a nice way to work on modern GUIs and hopefully get this tool working multiplatform without loosing my mind:
 
 Link: [PyQt6](https://pypi.org/project/PyQt6/)
 
@@ -70,7 +76,7 @@ If you want to use a direct "compiled-Windows-EXE-version", download the lastest
 
 #### Setup
 
-First start the tool will ask where it's located the `files` folder of Severed Chains, in here is where the TLoD Assets are deployed after Severed Chains first startup.
+First start the tool will ask where it's located the `files` folder of Severed Chains, in here is where the TLoD Assets are deployed after Severed Chains first startup.
 
 Later will ask a folder to deploy the converted files.
 
@@ -80,7 +86,7 @@ In the `CONFIG` Button you can change some options related to Window size and fo
 
 In the main window will find several buttons to do specific tasks.
 - Convert Battle Models. Pretty self-explanatory.
-- Convert SubMap Models. Convert models used in the Pre-rendered Backgrounds, not only the characters but the 3D and Textures from the Pre-rendered Background.
+- Convert SubMap Models. Convert models used in the Pre-rendered Backgrounds, not only the characters also the 3D and Textures from the Pre-rendered Background.
 - Convert WorldMap Models. Convert models used while world navigation. 
-- Textures Only. In here you'll find the Textures which have no model related to it, for example the game GUI, some text, fonts, etc.
+- Textures Only. In here you'll find the Textures which are not attached to a model, for example the game GUI, some text, fonts, etc.
 - Future Options: DEFF Conversion (convert Special Visual effects used during Magic casts, Dragoon attacks/magics, some other stuff), Sound Conversion, Mod Manager.
