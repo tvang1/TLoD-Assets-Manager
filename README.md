@@ -1,5 +1,4 @@
-
-TLoD Tool for manage game Assets (Textures, Models, Animations).
+## TLoD Tool for manage game Assets (Textures, Models, Animations).
 Version: **BETA 0.2**
 
 **MAC OS Fork**
@@ -8,7 +7,7 @@ Since I do not have a proper hardware to test it, was impossible to me making so
 [https://github.com/tvang1/TLoD-Assets-Manager-MacOS]
 You can check it in there!
 
-*About the tool:*
+## About the tool:
 
 Surely you are familiar to TLoD TMD Converter (tool for converting Models from TLoD) and TLoD Texture Converter (tool for converting Textures), now i merged the best of the two worlds in a single tool. TLoD Assets Manager. 
 
