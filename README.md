@@ -7,6 +7,32 @@ Since I do not have a proper hardware to test it, was impossible to me making so
 [https://github.com/tvang1/TLoD-Assets-Manager-MacOS]
 You can check it in there!
 
+**Instructions for MacOS users by TheRamenRider/tvang1**
+
+I'm assuming one can download this repo and can extract the contents in an organized place.
+Or hopefully, one knows how to clone from a repo.
+If you have trouble doing that, please look at [ https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository ]
+
+So we have some requirements. TLoD Assets Converter relies on Python and some dependecies.
+Python can be installed a couple of ways on MacOS.
+1) Python's main page [ https://www.python.org/downloads/ ]
+2) 'Brew' [ https://brew.sh ]
+
+I personally use 'brew' as it's similar to Linux distro packages.
+
+Once you get Python installed. You'll have to use MacOS terminal and navigate to the TLoD Assets Converter folder.
+
+> cd [ path to folder ]
+
+As far as running the program and getting dependecies, you're in luck!
+Just run the command in terminal (assuming you're in the TLoD Assets Converter folder):
+
+> bash Start-TLoD.sh
+
+This sets up a python virtual environment for TLoD Assets Converter and installs the dependecies. Once that's done, you can continue to run Start-TLoD.sh or main_gui.py to use TLoD Assets Converter. As long as the .venv is present, you'll be able to run the tool.
+
+---
+
 ## About the tool:
 
 Surely you are familiar to TLoD TMD Converter (tool for converting Models from TLoD) and TLoD Texture Converter (tool for converting Textures), now i merged the best of the two worlds in a single tool. TLoD Assets Manager. 
