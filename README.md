@@ -45,6 +45,7 @@ Just run the command in terminal (assuming you're in the TLoD Assets Converter f
 > bash Start-TLoD.sh
 
 This sets up a python virtual environment for TLoD Assets Converter and installs the dependecies. Once that's done, you can continue to run Start-TLoD.sh or main_gui.py to use TLoD Assets Converter. As long as the .venv is present, you'll be able to run the tool.
+This sets up a python virtual environment for TLoD Assets Converter and installs the dependecies. Once that's done, you can continue to run Start-TLoD.sh or main_gui.py to use TLoD Assets Converter. As long as the .venv is present, you'll be able to run the tool.
 
 ---
 

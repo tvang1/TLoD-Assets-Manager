@@ -14,6 +14,7 @@ Copyright (C) 2024 DooMMetaL
 
 import sys
 import os
+import shutil
 from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QDialog, QLabel, QGridLayout, QComboBox, QLineEdit, QMessageBox
 from PyQt6.QtGui import QIcon, QFont
 from PyQt6 import QtCore
@@ -328,8 +329,26 @@ class MainWindow(QMainWindow):
         deff_conversion_window = DeffConversionMainWindow(self, icon=self.icon, assets_database=self.assets_database, sc_folder=sc_folder_deff, deploy_folder=deploy_folder)
 
 if __name__ == '__main__':
-    absolute_path_current = os.path.abspath(os.getcwd())
-    absolute_path_config = f'{absolute_path_current}/Resources/Manager.config'
+    # This was added to support PyInstaller bundling.
+    # Get the correct base path for PyInstaller or normal Python environment
+    if getattr(sys, 'frozen', False):
+        # Running in PyInstaller bundle
+        absolute_path_current = sys._MEIPASS
+    else:
+        # Running in normal Python environment
+        absolute_path_current = os.path.abspath(os.getcwd())
+    
+    absolute_path_config_template = f'{absolute_path_current}/Resources/Manager.config'
+    if getattr(sys, 'frozen', False):
+        # Keep mutable config outside of signed app bundle to avoid seal invalidation.
+        user_config_folder = os.path.expanduser('~/Library/Application Support/TLoD-Assets-Manager')
+        os.makedirs(user_config_folder, exist_ok=True)
+        absolute_path_config = f'{user_config_folder}/Manager.config'
+        if not os.path.exists(absolute_path_config):
+            shutil.copyfile(absolute_path_config_template, absolute_path_config)
+    else:
+        absolute_path_config = absolute_path_config_template
+
     absolute_path_databases = f'{absolute_path_current}/Databases'
     background_image = f'{absolute_path_current}/Resources/main.png'.replace('/', '/')
     icon_app = f'{absolute_path_current}/Resources/Dragoon_Eyes.ico'
