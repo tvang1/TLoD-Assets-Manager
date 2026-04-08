@@ -7,7 +7,22 @@ Since I do not have a proper hardware to test it, was impossible to me making so
 [https://github.com/tvang1/TLoD-Assets-Manager-MacOS]
 You can check it in there!
 
-**Instructions for MacOS users by TheRamenRider/tvang1**
+**Instructions for Release "TLoD_Asset_Manager_MacOS_BETA_0.2.zip" by TheRamenRider/tvang1**
+
+Simply extract the contents of the zip to a desired location.
+
+Open the application and then you'll get greeted by this message:
+
+- Apple could not verify “TLoD-Assets-ManagerMacOSBeta0.2” is free of malware that may harm your Mac or compromise your privacy.
+
+Please click "Done". Do not move the app to the trash.
+Then go System Settings -> Privacy & Security
+Scroll down and you should see "TLoD-Assets-ManagerMacOSBeta0.2" and the option to open it anyway.
+Click on that and then select the option to "Open it Anyway".
+
+Follow the instructions in this README where it says " ### Setup " and " ### How to use it ".
+
+**Instructions for MacOS Developer/Code-Enthusiasts by TheRamenRider/tvang1**
 
 I'm assuming one can download this repo and can extract the contents in an organized place.
 Or hopefully, one knows how to clone from a repo.
@@ -29,7 +44,7 @@ Just run the command in terminal (assuming you're in the TLoD Assets Converter f
 
 > bash Start-TLoD.sh
 
-This sets up a python virtual environment for TLoD Assets Converter and installs the dependecies. Once that's done, you can continue to run Start-TLoD.sh or main_gui.py to use TLoD Assets Converter. As long as the .venv is present and one selects the virtual environment as the Python Interpreter, you'll be able to run the tool.
+This sets up a python virtual environment for TLoD Assets Converter and installs the dependecies. Once that's done, you can continue to run Start-TLoD.sh or main_gui.py to use TLoD Assets Converter. As long as the .venv is present, you'll be able to run the tool.
 
 ---
 
